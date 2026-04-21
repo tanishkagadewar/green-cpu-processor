@@ -1,0 +1,40 @@
+VCD info: dumpfile single_cycle_cpu_tb.vcd opened for output.
+============================================================
+ Milestone 1 — Single-Cycle CPU Testbench
+============================================================
+Reset released at time 15000
+[CYCLE] t=15000 PC=0 INST=0x1200 ALU_A=0 ALU_B=0 ALU_OUT=0x0000 WB=0x0005 RW=1 MR=1 MW=0
+[CYCLE] t=25000 PC=0 INST=0x1200 ALU_A=0 ALU_B=0 ALU_OUT=0x0000 WB=0x0005 RW=1 MR=1 MW=0
+[CYCLE] t=35000 PC=1 INST=0x1401 ALU_A=0 ALU_B=1 ALU_OUT=0x0001 WB=0x0003 RW=1 MR=1 MW=0
+[CYCLE] t=45000 PC=2 INST=0x0650 ALU_A=5 ALU_B=3 ALU_OUT=0x0008 WB=0x0008 RW=1 MR=0 MW=0
+[CYCLE] t=55000 PC=3 INST=0x0851 ALU_A=5 ALU_B=3 ALU_OUT=0x0002 WB=0x0002 RW=1 MR=0 MW=0
+[CYCLE] t=65000 PC=4 INST=0x0a8a ALU_A=3 ALU_B=5 ALU_OUT=0x0001 WB=0x0001 RW=1 MR=0 MW=0
+[CYCLE] t=75000 PC=5 INST=0x0c53 ALU_A=5 ALU_B=3 ALU_OUT=0x0007 WB=0x0007 RW=1 MR=0 MW=0
+[CYCLE] t=85000 PC=6 INST=0x0e54 ALU_A=5 ALU_B=3 ALU_OUT=0x0001 WB=0x0001 RW=1 MR=0 MW=0
+[CYCLE] t=95000 PC=7 INST=0x2604 ALU_A=0 ALU_B=4 ALU_OUT=0x0004 WB=0x0004 RW=0 MR=0 MW=1
+[CYCLE] t=105000 PC=8 INST=0x0656 ALU_A=5 ALU_B=3 ALU_OUT=0x0028 WB=0x0028 RW=1 MR=0 MW=0
+[CYCLE] t=115000 PC=9 INST=0x0855 ALU_A=5 ALU_B=3 ALU_OUT=0x0000 WB=0x0000 RW=1 MR=0 MW=0
+[CYCLE] t=125000 PC=10 INST=0x1a02 ALU_A=0 ALU_B=2 ALU_OUT=0x0002 WB=0xffff RW=1 MR=1 MW=0
+[CYCLE] t=135000 PC=11 INST=0x0d57 ALU_A=65535 ALU_B=3 ALU_OUT=0xffff WB=0xffff RW=1 MR=0 MW=0
+[CYCLE] t=145000 PC=12 INST=0x1e04 ALU_A=0 ALU_B=4 ALU_OUT=0x0004 WB=0x0008 RW=1 MR=1 MW=0
+[CYCLE] t=155000 PC=13 INST=0x0000 ALU_A=0 ALU_B=0 ALU_OUT=0x0000 WB=0x0000 RW=1 MR=0 MW=0
+
+--- Register File Verification ---
+[PASS] R1 = 0x0005 (expected 0x0005)
+[PASS] R2 = 0x0003 (expected 0x0003)
+[PASS] R3 = 0x0028 (expected 0x0028 = SLL 5<<3)
+[PASS] R4 = 0x0000 (expected 0x0000 = SRL 5>>3)
+[PASS] R5 = 0xffff (expected 0xFFFF = mem[2])
+[PASS] R6 = 0xffff (expected 0xFFFF = SRA 0xFFFF>>>3)
+[PASS] R7 = 0x0008 (expected 0x0008 = mem[4], verifies SH)
+
+--- Data Memory Verification ---
+[PASS] DMEM[4] = 0x0008 (expected 0x0008)
+[PASS] DMEM[0] = 0x0005 (original data intact)
+[PASS] DMEM[1] = 0x0003 (original data intact)
+
+============================================================
+ TEST SUMMARY: 10 PASSED, 0 FAILED (of 10 total)
+ >>> ALL TESTS PASSED <<<
+============================================================
+processor\milestone1\tb\single_cycle_cpu_tb.v:236: $finish called at 156000 (1ps)

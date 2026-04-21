@@ -1,0 +1,68 @@
+VCD info: dumpfile m5_crypto_tb.vcd opened for output.
+============================================================
+ Milestone 5 — Crypto Co-Processor Testbench
+============================================================
+[CYC] t=35000 PC=1 IF=0x321a crypt_stall=0 done=0
+[CYC] t=45000 PC=2 IF=0x3407 crypt_stall=0 done=0
+[CYC] t=55000 PC=3 IF=0xf652 crypt_stall=0 done=0
+[CYC] t=65000 PC=4 IF=0xf8d3 crypt_stall=1 done=0
+[CYC] t=75000 PC=4 IF=0xf8d3 crypt_stall=1 done=0
+[CYC] t=85000 PC=4 IF=0xf8d3 crypt_stall=1 done=0
+[CYC] t=95000 PC=4 IF=0xf8d3 crypt_stall=1 done=0
+[CYC] t=105000 PC=4 IF=0xf8d3 crypt_stall=0 done=1
+[CYC] t=115000 PC=5 IF=0x0b09 crypt_stall=1 done=0
+[CYC] t=125000 PC=5 IF=0x0b09 crypt_stall=1 done=0
+[CYC] t=135000 PC=5 IF=0x0b09 crypt_stall=1 done=0
+[CYC] t=145000 PC=5 IF=0x0b09 crypt_stall=1 done=0
+[CYC] t=155000 PC=5 IF=0x0b09 crypt_stall=0 done=1
+[CYC] t=165000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=175000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=185000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=195000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=205000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=215000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=225000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=235000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=245000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=255000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=265000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=275000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=285000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=295000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=305000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=315000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=325000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=335000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=345000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=355000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=365000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=375000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=385000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=395000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=405000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=415000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=425000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=435000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=445000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=455000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=465000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=475000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=485000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=495000 PC=6 IF=0x9000 crypt_stall=0 done=0
+[CYC] t=505000 PC=7 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=515000 PC=5 IF=0x0000 crypt_stall=0 done=0
+[CYC] t=525000 PC=6 IF=0x9000 crypt_stall=0 done=0
+
+--- Crypto Round-Trip Verification ---
+[PASS] R1 = 26 (plaintext)
+[PASS] R2 = 7 (key)
+[INFO] R3 = 0xe9f8 (ciphertext)
+[PASS] R3 != plaintext (encryption changed data)
+[PASS] R4 = 26 (decrypt = original plaintext!)
+[PASS] R5 = 0 (R4-R1=0, round-trip verified!)
+
+============================================================
+ TEST SUMMARY: 5 PASSED, 0 FAILED (of 5 total)
+ >>> ALL TESTS PASSED <<<
+============================================================
+processor\milestone5\tb\pipelined_cpu_tb.v:117: $finish called at 526000 (1ps)

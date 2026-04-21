@@ -1,0 +1,54 @@
+VCD info: dumpfile m4_pipeline_tb.vcd opened for output.
+============================================================
+ Milestone 4 — Pipelined CPU Testbench
+============================================================
+[CYC] t=35000 PC=1 IF_ID.inst=0x320a stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=45000 PC=2 IF_ID.inst=0x3445 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=55000 PC=3 IF_ID.inst=0x0650 stall=0 flush=0 | EX: fwdA=01 fwdB=00
+[CYC] t=65000 PC=4 IF_ID.inst=0x08c9 stall=0 flush=0 | EX: fwdA=10 fwdB=01
+[CYC] t=75000 PC=5 IF_ID.inst=0x2200 stall=0 flush=0 | EX: fwdA=01 fwdB=00
+[CYC] t=85000 PC=6 IF_ID.inst=0x1a00 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=95000 PC=7 IF_ID.inst=0x0d48 stall=1 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=105000 PC=7 IF_ID.inst=0x0d48 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=115000 PC=8 IF_ID.inst=0x9002 stall=0 flush=0 | EX: fwdA=10 fwdB=00
+[CYC] t=125000 PC=9 IF_ID.inst=0x3e1f stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=135000 PC=9 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=145000 PC=10 IF_ID.inst=0x3e19 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=155000 PC=11 IF_ID.inst=0x9000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=165000 PC=12 IF_ID.inst=0x0000 stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=175000 PC=10 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=185000 PC=11 IF_ID.inst=0x9000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=195000 PC=12 IF_ID.inst=0x0000 stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=205000 PC=10 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=215000 PC=11 IF_ID.inst=0x9000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=225000 PC=12 IF_ID.inst=0x0000 stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=235000 PC=10 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=245000 PC=11 IF_ID.inst=0x9000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=255000 PC=12 IF_ID.inst=0x0000 stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=265000 PC=10 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=275000 PC=11 IF_ID.inst=0x9000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=285000 PC=12 IF_ID.inst=0x0000 stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=295000 PC=10 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=305000 PC=11 IF_ID.inst=0x9000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+[CYC] t=315000 PC=12 IF_ID.inst=0x0000 stall=0 flush=1 | EX: fwdA=00 fwdB=00
+[CYC] t=325000 PC=10 IF_ID.inst=0x0000 stall=0 flush=0 | EX: fwdA=00 fwdB=00
+
+--- Forwarding Verification ---
+[PASS] R1 = 10 (ADDI)
+[PASS] R2 = 15 (R1+5, EX/MEM fwd)
+[PASS] R3 = 25 (R1+R2, dual fwd)
+[PASS] R4 = 15 (R3-R1, fwd chain)
+
+--- Load-Use Stall Verification ---
+[PASS] R5 = 10 (LH mem[0])
+[PASS] R6 = 20 (R5+R1, load-use stall)
+
+--- Branch Flush Verification ---
+[PASS] R7 = 25 (branch flush correct)
+[PASS] DMEM[0] = 10 (SH verified)
+
+============================================================
+ TEST SUMMARY: 8 PASSED, 0 FAILED (of 8 total)
+ >>> ALL TESTS PASSED <<<
+============================================================
+processor\milestone4\tb\pipelined_cpu_tb.v:171: $finish called at 326000 (1ps)

@@ -1,0 +1,55 @@
+VCD info: dumpfile m2_cpu_tb.vcd opened for output.
+============================================================
+ Milestone 2 — Extended ISA Testbench
+============================================================
+[CYC] t=15000 PC=0 INST=0x320a ALU=0x000a WB=0x000a br=0 jal=0 jalr=0
+[CYC] t=25000 PC=0 INST=0x320a ALU=0x000a WB=0x000a br=0 jal=0 jalr=0
+[CYC] t=35000 PC=1 INST=0x3405 ALU=0x0005 WB=0x0005 br=0 jal=0 jalr=0
+[CYC] t=45000 PC=2 INST=0x4643 ALU=0x0007 WB=0x0007 br=0 jal=0 jalr=0
+[CYC] t=55000 PC=3 INST=0x5845 ALU=0x000f WB=0x000f br=0 jal=0 jalr=0
+[CYC] t=65000 PC=4 INST=0x6a47 ALU=0x0002 WB=0x0002 br=0 jal=0 jalr=0
+[CYC] t=75000 PC=5 INST=0x7c8a ALU=0x0001 WB=0x0001 br=0 jal=0 jalr=0
+[CYC] t=85000 PC=6 INST=0x7e45 ALU=0x0000 WB=0x0000 br=0 jal=0 jalr=0
+[CYC] t=95000 PC=7 INST=0x8652 ALU=0x0028 WB=0x0028 br=0 jal=0 jalr=0
+[CYC] t=105000 PC=8 INST=0x8841 ALU=0x0005 WB=0x0005 br=0 jal=0 jalr=0
+[CYC] t=115000 PC=9 INST=0x363f ALU=0xffff WB=0xffff br=0 jal=0 jalr=0
+[CYC] t=125000 PC=10 INST=0x88e3 ALU=0xffff WB=0xffff br=0 jal=0 jalr=0
+[CYC] t=135000 PC=11 INST=0x9442 ALU=0x000f WB=0x000f br=1 jal=0 jalr=0
+[CYC] t=145000 PC=12 INST=0x3a01 ALU=0x0001 WB=0x0001 br=0 jal=0 jalr=0
+[CYC] t=155000 PC=13 INST=0x9242 ALU=0x0014 WB=0x0014 br=1 jal=0 jalr=0
+[CYC] t=165000 PC=15 INST=0xa442 ALU=0x000f WB=0x000f br=1 jal=0 jalr=0
+[CYC] t=175000 PC=17 INST=0xb282 ALU=0x000f WB=0x000f br=1 jal=0 jalr=0
+[CYC] t=185000 PC=19 INST=0xc442 ALU=0x000f WB=0x000f br=1 jal=0 jalr=0
+[CYC] t=195000 PC=21 INST=0xb442 ALU=0x000f WB=0x000f br=1 jal=0 jalr=0
+[CYC] t=205000 PC=22 INST=0xc282 ALU=0x000f WB=0x000f br=1 jal=0 jalr=0
+[CYC] t=215000 PC=23 INST=0xdc03 ALU=0x0000 WB=0x0018 br=0 jal=1 jalr=0
+[CYC] t=225000 PC=26 INST=0x3e19 ALU=0x0019 WB=0x0019 br=0 jal=0 jalr=0
+[CYC] t=235000 PC=27 INST=0xe180 ALU=0x0018 WB=0x001c br=0 jal=0 jalr=1
+[CYC] t=245000 PC=24 INST=0x3a14 ALU=0x0014 WB=0x0014 br=0 jal=0 jalr=0
+[CYC] t=255000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+[CYC] t=265000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+[CYC] t=275000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+[CYC] t=285000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+[CYC] t=295000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+[CYC] t=305000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+[CYC] t=315000 PC=25 INST=0x9000 ALU=0x0000 WB=0x0000 br=1 jal=0 jalr=0
+
+--- I-Type ALU Verification ---
+[PASS] R1 = 10 (ADDI R0+10)
+[PASS] R2 = 5 (ADDI R0+5)
+[PASS] R3 = 0xffff (ADDI -1 overwrote SLLI)
+[PASS] R4 = 0xffff (SRAI 0xFFFF>>>3)
+
+--- Branch Verification ---
+[PASS] R5 = 20 (branches+JALR return correct)
+
+--- JAL/JALR Verification ---
+[PASS] R6 = 24 (JAL return addr = 24)
+[PASS] R7 = 25 (subroutine ADDI=25)
+[PASS] PC = 25 (halted at BEQ loop)
+
+============================================================
+ TEST SUMMARY: 8 PASSED, 0 FAILED (of 8 total)
+ >>> ALL TESTS PASSED <<<
+============================================================
+processor\milestone2\tb\single_cycle_cpu_tb.v:182: $finish called at 316000 (1ps)

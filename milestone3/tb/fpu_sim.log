@@ -1,0 +1,40 @@
+VCD info: dumpfile fpu_tb.vcd opened for output.
+============================================================
+ Milestone 3 — FP16 FPU Testbench
+============================================================
+
+--- FADD: Normal Cases ---
+[PASS] T1: FADD 1.0 + 2.0 = 3.0 => 0x4200
+[PASS] T2: FADD 1.5 + 1.5 = 3.0 => 0x4200
+[PASS] T3: FADD 3.0 + (-1.0) = 2.0 => 0x4000
+[PASS] T4: FADD -1.0 + (-2.0) = -3.0 => 0xc200
+[PASS] T5: FADD 1.0 + (-1.0) = +0.0 => 0x0000
+
+--- FADD: Special Cases ---
+[PASS] T6: FADD 0 + 1.0 = 1.0 => 0x3c00
+[PASS] T7: FADD 0 + 0 = 0 => 0x0000
+[PASS] T8: FADD +Inf + 1.0 = +Inf => 0x7c00
+[PASS] T9: FADD +Inf + -Inf = NaN => 0x7e00
+[PASS] T10: FADD NaN + 1.0 = NaN => 0x7e00
+
+--- FADD: Denormals ---
+[PASS] T11: FADD denorm + 0 = denorm => 0x0001
+[PASS] T12: FADD denorm + denorm => 0x0002
+
+--- FMUL: Normal Cases ---
+[PASS] T13: FMUL 2.0 * 3.0 = 6.0 => 0x4600
+[PASS] T14: FMUL 1.5 * 1.5 = 2.25 => 0x4080
+[PASS] T15: FMUL 1.0 * (-1.0) = -1.0 => 0xbc00
+[PASS] T16: FMUL -2.0 * -3.0 = 6.0 => 0x4600
+
+--- FMUL: Special Cases ---
+[PASS] T17: FMUL 2.0 * 0 = +0 => 0x0000
+[PASS] T18: FMUL 0 * Inf = NaN => 0x7e00
+[PASS] T19: FMUL 2.0 * +Inf = +Inf => 0x7c00
+[PASS] T20: FMUL NaN * 1.0 = NaN => 0x7e00
+
+============================================================
+ TEST SUMMARY: 20 PASSED, 0 FAILED (of 20 total)
+ >>> ALL TESTS PASSED <<<
+============================================================
+processor\milestone3\tb\fpu_tb.v:140: $finish called at 20000 (1ps)

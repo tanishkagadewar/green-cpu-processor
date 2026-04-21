@@ -1,0 +1,16 @@
+# Compiled simulation binaries
+*.vvp
+
+# VCD waveform dumps (large binary files - regenerate with iverilog/vvp)
+*.vcd
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
