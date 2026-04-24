@@ -1,110 +1,69 @@
-# Green CPU — 16-bit RISC-V-Style Processor in Verilog
+# 16-bit RISC-V-Style Processor
 
-A complete, custom-built 16-bit pipelined processor written from scratch in Verilog HDL. This project traces the iterative construction of a digital CPU — evolving from a simple single-cycle datapath into a 5-stage pipelined architecture with an IEEE-754 Half-Precision FPU and a hardware Cryptographic Co-Processor.
+![Verilog](https://img.shields.io/badge/Language-Verilog-blue)
+![Simulation](https://img.shields.io/badge/Simulation-Icarus_Verilog-green)
+![Platform](https://img.shields.io/badge/Platform-FPGA_Ready-orange)
+![License](https://img.shields.io/badge/License-MIT-purple)
 
-Simulated and verified using **Icarus Verilog** and **GTKWave** across 51 test cases with a 100% pass rate.
+**A complete, custom-built 16-bit pipelined CPU written from scratch in Verilog.**
 
----
+This project traces the iterative construction of a digital hardware processor, evolving from a simple single-cycle datapath into a 5-stage pipelined architecture equipped with an IEEE-754 Half-Precision FPU (Floating Point Unit) and a deeply integrated Cryptographic Co-Processor.
 
-## Architecture Highlights
+## 🏗️ Architecture Highlights
+* **Instruction Set Architecture (ISA)**: Custom tightly-packed 16-bit encoding with exactly 16 opcodes and 7 formats (R, I, S, IS, B, J, JALR).
+* **Memory Model**: Harvard Architecture (separate isolated Instruction ROM and Data RAM boundaries), natively word-addressed.
+* **General-Purpose Registers**: 8 × 16-bit registers (R0 hardwired to `0`).
+* **Datapath Pipeline**: Highly cohesive 5-stage pipeline (`IF` → `ID` → `EX` → `MEM` → `WB`).
+* **Simulation Validated**: Verified completely via Icarus Verilog and GTKWave directly natively using rigorous directed testbenches mapping branches, forwards, and complex jumps flawlessly. 
 
-| Feature | Details |
-|---|---|
-| **ISA** | Custom 16-bit encoding — 16 opcodes, 7 formats (R, I, S, IS, B, J, JALR) |
-| **Memory** | Harvard Architecture — separate Instruction ROM and Data RAM |
-| **Registers** | 8 × 16-bit general-purpose (R0 hardwired to `0`) |
-| **Pipeline** | 5-stage: `IF → ID → EX → MEM → WB` |
-| **CPI** | 1.11 measured (90% pipeline efficiency) |
-| **FPU** | IEEE-754 Half-Precision (fp16) FADD and FMUL |
-| **Crypto** | 16-bit SPN cipher with 4-bit PRESENT S-box |
-
----
-
-## Project Structure
-
-```
-green-cpu-processor/
-├── milestone1/          # Single-cycle core (10 instructions)
-│   ├── src/             # RTL source files
-│   ├── tb/              # Testbench
-│   └── walkthrough.md   # Design notes & test results
-├── milestone2/          # ISA extension (+15 instructions, branches, jumps)
-├── milestone3/          # IEEE-754 fp16 FPU (FADD, FMUL)
-├── milestone4/          # 5-stage pipeline (forwarding, hazard detection)
-└── milestone5/          # Cryptographic co-processor (ENC/DEC instructions)
-```
+> *Note: A block diagram of the architecture and pipeline layout can be referenced in the design documentation.*
 
 ---
 
-## Milestones
+## 📈 Evolution & Milestones
 
-### Milestone 1 — Single-Cycle Core
-Base implementation with 10 instructions covering arithmetic (ADD, SUB, SLT), logic (OR, AND), shifts (SLL, SRL, SRA), and memory access (LH, SH). All 5 datapath stages execute in a single clock cycle.
+The project is structured entirely inside 5 precise directories detailing iteration growth cleanly. (**Note:** Every milestone folder contains an isolated `walkthrough.md` exploring its distinct implementations and testing routines.)
 
-**Modules:** `pc_register`, `instruction_memory`, `register_file`, `alu`, `data_memory`, `sign_extend`, `control_unit`, `single_cycle_cpu` (top)
+### 📌 Milestone 1: Single-Cycle Core
+Base implementation evaluating 10 commands targeting logic routines, shifting evaluations, basic load (`LH`), and basic store (`SH`). Features an early isolated central `control_unit.v`.
 
-### Milestone 2 — ISA Extension
-Expands the ISA with 15 new instructions — branch comparators (BEQ, BNE, BLT, BGE), immediate arithmetic (ADDI, SLTI, ORI, ANDI), and jump-link (JAL, JALR). Tests branch-taken and branch-not-taken paths.
+### 🔀 Milestone 2: ISA Extension
+Expands control flow logic capabilities adding 15 new instructions. Natively injects branch-specific evaluation comparators routing taken jumps to target addresses, extending jump linking correctly.
 
-### Milestone 3 — IEEE-754 Half-Precision FPU
-Standalone FPU supporting fp16 addition and multiplication. Implements Round-to-Nearest-Even (RNE) with full NaN/Infinity handling. Designed as a pure combinational unit for integration into the pipeline EX stage.
+### 🧮 Milestone 3: IEEE 754 Half-Precision FPU
+Introduces `fp16_fadd` and `fp16_fmul`. Designed as a pure combinational hardware abstraction computing alignment shifting securely with strictly enforced Round-to-Nearest-Even (RNE) compliance and NaN/Infinity bounds.
 
-**Modules:** `fp16_fadd`, `fp16_fmul`, `fpu`
+### 🏎️ Milestone 4: 5-Stage Pipelined Setup
+Rebuilds the CPU logic utilizing isolated pipeline registers targeting advanced performance limits. Fully implements:
+* **Forwarding Check**: Re-routing EX/MEM output streams dynamically catching Read-After-Write (RAW) exceptions instantaneously. 
+* **Load-Use Execution Limits**: Calculating memory delay bounds halting inputs strictly with temporary bubbles logic perfectly mapped out.
+* **Branch Flushing Operations**: Imposes hard jumps killing broken path progression entirely.
 
-### Milestone 4 — 5-Stage Pipelined CPU
-Full rebuild into a 5-stage pipeline with:
-- **Forwarding Unit** — EX/MEM → EX data forwarding to resolve RAW hazards without stalling
-- **Hazard Detection Unit** — Load-use stall insertion (1-cycle bubble)
-- **Branch Flushing** — Incorrect-path instruction squashing on taken branches
-
-**Measured CPI: 1.11 | Pipeline Efficiency: 90%**
-
-### Milestone 5 — Cryptographic Co-Processor
-Hardware-accelerated encryption integrated directly into the EX pipeline stage. Implements a 16-bit Substitution-Permutation Network (SPN) cipher with 4 rounds, triggered by new `ENC`/`DEC` opcodes. Multi-cycle (5 clock cycle) handshake stalls the pipeline cleanly while the co-processor operates.
-
-**Verified:** Plaintext `26` → Ciphertext `0xE9F8` → Decrypted `26` ✅
+### 🔐 Milestone 5: Cryptographic Co-Processor
+Replaces abstract boundaries with custom encryption hardware natively inside the `EX` pipeline stage. Implements a multi-cycle (5-cycle latency) 16-bit Substitution-Permutation Network (SPN) cipher running over an optimized 4-bit PRESENT S-box pattern triggered specifically by new `ENC`/`DEC` CPU commands directly.
 
 ---
 
-## Quick Start
+## 🚀 Quick Start & Simulation Tools
 
-**Requirements:** [Icarus Verilog](http://iverilog.icarus.com/) + [GTKWave](http://gtkwave.sourceforge.net/)
+To explore the architecture directly locally you only require **Icarus Verilog** and **GTKWave**.
 
+All milestone code variants include independent `tb/` (testbench) routines. Simply run Icarus (`iverilog`) targeting a milestone's `src` files against its testing script.
+
+*Example simulating Milestone 5 natively:*
 ```bash
-# Example: Simulate Milestone 5 (full pipelined CPU with crypto)
-iverilog -o m5_tb.vvp milestone5/src/*.v milestone5/tb/pipelined_cpu_tb.v
-vvp m5_tb.vvp
+# 1. Compile 
+iverilog -o cpu_tb.vvp milestone5/src/*.v milestone5/tb/pipelined_cpu_tb.v
 
-# View waveforms (VCD file generated in current directory)
+# 2. Run outputs
+vvp cpu_tb.vvp
+
+# 3. Analyze waveforms graphically 
 gtkwave m5_crypto_tb.vcd
 ```
 
-Each milestone folder contains its own `walkthrough.md` with simulation commands, expected outputs, and GTKWave signal guides.
-
 ---
 
-## Test Results Summary
+## 📄 License
 
-| Milestone | Test Cases | Result |
-|---|---|---|
-| M1 — Single-Cycle | 13 instructions | ✅ 13/13 PASS |
-| M2 — ISA Extension | 10 instructions | ✅ 10/10 PASS |
-| M3 — FPU | 8 operations | ✅ 8/8 PASS |
-| M4 — Pipeline | 15 instructions | ✅ 15/15 PASS |
-| M5 — Crypto | 5 round-trip tests | ✅ 5/5 PASS |
-| **Total** | **51** | **✅ 51/51 (100%)** |
-
----
-
-## Tools Used
-
-- **Icarus Verilog** — Simulation & compilation
-- **GTKWave** — Waveform analysis
-- **Verilog HDL** — RTL design language
-
----
-
-## Author
-
-**Tanishka Gadewar** — Electronics & Communication Engineering, PICT Pune  
-Built as part of a structured hardware design curriculum covering RTL design, pipeline architecture, FPU implementation, and hardware security.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

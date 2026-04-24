@@ -67,15 +67,15 @@ single_cycle_cpu (top)
 
 | File | Purpose |
 |------|---------|
-| [pc_register.v](milestone1/src/pc_register.v) | Program Counter register |
-| [instruction_memory.v](milestone1/src/instruction_memory.v) | Instruction ROM |
-| [register_file.v](milestone1/src/register_file.v) | 8×16 Register File |
-| [alu.v](milestone1/src/alu.v) | 16-bit ALU |
-| [data_memory.v](milestone1/src/data_memory.v) | Data RAM |
-| [sign_extend.v](milestone1/src/sign_extend.v) | Sign Extension Unit |
-| [control_unit.v](milestone1/src/control_unit.v) | Control Unit with full encoding table |
-| [single_cycle_cpu.v](milestone1/src/single_cycle_cpu.v) | Top-level CPU integration |
-| [single_cycle_cpu_tb.v](milestone1/tb/single_cycle_cpu_tb.v) | Integration testbench |
+| [pc_register.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/pc_register.v) | Program Counter register |
+| [instruction_memory.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/instruction_memory.v) | Instruction ROM |
+| [register_file.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/register_file.v) | 8×16 Register File |
+| [alu.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/alu.v) | 16-bit ALU |
+| [data_memory.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/data_memory.v) | Data RAM |
+| [sign_extend.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/sign_extend.v) | Sign Extension Unit |
+| [control_unit.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/control_unit.v) | Control Unit with full encoding table |
+| [single_cycle_cpu.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/src/single_cycle_cpu.v) | Top-level CPU integration |
+| [single_cycle_cpu_tb.v](file:///c:/Users/PAVITRAM%20KUMAWAT/OneDrive/Desktop/nlp/processor/milestone1/tb/single_cycle_cpu_tb.v) | Integration testbench |
 
 ---
 
